@@ -1,0 +1,9 @@
+#include<stdio.h>
+int main()
+{
+   int a=20,b=10;
+    sum=a+b;
+     printf("sum is ",sum);
+     printf("divide is ",(a/b));
+  return 0;
+}
