@@ -1,0 +1,25 @@
+package com.demo.springmvc.configuration;
+
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+public class MyAppConfig extends AbstractAnnotationConfigDispatcherServletInitializer{
+
+	@Override
+	protected Class<?>[] getRootConfigClasses() {
+		
+		return new Class[] {DatabaseConfiguration.class};
+	}
+
+	@Override
+	protected Class<?>[] getServletConfigClasses() {
+		
+		return new Class[] {WebMvcConfig.class};
+	}
+
+	@Override
+	protected String[] getServletMappings() {
+		
+		return new String[] {"/"};
+	}
+
+}
