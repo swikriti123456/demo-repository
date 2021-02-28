@@ -11,5 +11,5 @@ import com.demo.springmvc.bean.Employee;
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	List<Employee> findByFirstName(String name);
 	List<Employee> findByFirstNameAndLastName(String fName,String lName);
-
+	//List<Employee> findByAge(int age);
 }
