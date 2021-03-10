@@ -13,14 +13,17 @@
 
 	<context:annotation-config />
 	<context:component-scan
-		base-package="com.demo.springmvc"></context:component-scan>
+		base-package="com.demo.springmvc" />
 
 	<mvc:annotation-driven></mvc:annotation-driven>
-	<tx:annotation-driven/>
-	<jpa:repositories base-package="com.demo.springmvc.dao.repositories"></jpa:repositories>
-
 	<mvc:resources location="/resources/"
-		mapping="/public/**"></mvc:resources><!-- to show location of css file -->
+		mapping="/public/**" /><!-- to show location of css file -->
+
+	<tx:annotation-driven />
+	<jpa:repositories
+		base-package="com.demo.springmvc.dao.repositories" />
+
+
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -30,52 +33,57 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
-			value="com.mysql.cj.jdbc.Driver"></property>
+			value="com.mysql.cj.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/advjava"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value="root"></property>
+			value="jdbc:mysql://localhost:3306/advjava" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
 	</bean>
 
 	<bean id="jdbcTemplate"
 		class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource" ref="dataSource"></property>
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"></property>
+		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan">
-		<list>
-		<value>com.demo.springmvc.beans</value>
-		</list>
+			<list>
+				<value>com.demo.springmvc.beans</value>
+			</list>
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.Dialect" >org.hibernate.dialect.MySQL8Dialect</prop>
+				<prop key="hibernate.Dialect">org.hibernate.dialect.MySQL8Dialect
+				</prop>
 				<prop key="show-sql">true</prop>
 				<prop key="format_sql">true</prop>
 				<prop key="hbm2ddl.auto">update</prop>
 			</props>
 		</property>
 	</bean>
-	
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-	<property name="dataSource" ref="dataSource"></property>
-	<property name="packagesToScan" value="com.demo.springmvc.beans"></property>
-	<property name="jpaVendorAdapter">
-	<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-	
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan"
+			value="com.demo.springmvc.beans" />
+		<property name="jpaVendorAdapter">
+			<bean
+				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+
+			</bean>
+		</property>
+
 	</bean>
-	</property>
-	
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory"
+			ref="entityManagerFactory" />
 	</bean>
-	
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-	<property name="entityManagerFactory" ref="entityManagerFactory"></property>
-	</bean>
-	
-	<!-- <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-	<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean> -->
+
+	<!-- <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager"> 
+		<property name="sessionFactory" ref="sessionFactory"></property> </bean> -->
 </beans>

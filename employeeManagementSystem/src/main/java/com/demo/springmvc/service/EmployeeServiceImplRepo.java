@@ -8,11 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.demo.springmvc.beans.Employee;
 import com.demo.springmvc.dao.repository.EmployeeRepository;
-@Service
-public class EmployeeServiceImplRepo implements EmployeeService
-{
 
-	@Autowired
+public class EmployeeServiceImplRepo implements EmployeeService
+{	
 	EmployeeRepository employeeRepository;
 
 	@Override
